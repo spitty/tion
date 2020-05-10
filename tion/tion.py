@@ -458,6 +458,9 @@ class TionApi:
                         _LOGGER.error(f"Unable to write authorization data to {self._auth_fname}: {e}!")
                 _LOGGER.info("Got new token")
                 return True
+            elif 400 <= response.status_code and response.status_code < 500:
+                _LOGGER.error(f"Status code while getting token: {response.status_code}, content:\n{response.json()}!")
+                raise RuntimeError("Can't authentificate")
             else:  # pragma: no cover
                 _LOGGER.error(f"Status code while getting token: {response.status_code}, content:\n{response.json()}!")
                 return False
