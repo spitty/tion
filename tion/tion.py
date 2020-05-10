@@ -2,6 +2,7 @@ import requests
 import logging
 from os import path
 from time import time, sleep
+from fake_useragent import UserAgent
 
 
 _LOGGER = logging.getLogger("tion")
@@ -408,6 +409,7 @@ class TionApi:
         self._password = password
         self._auth_fname = auth_fname
         self._min_update_interval = min_update_interval_sec
+        self._ua = UserAgent().chrome
         if self._auth_fname and path.exists(self._auth_fname):
             with open(self._auth_fname) as file:
                 self.authorization = file.read()
@@ -431,7 +433,7 @@ class TionApi:
             "Host": "api2.magicair.tion.ru",
             "Origin": "https://magicair.tion.ru",
             "Referer": "https://magicair.tion.ru/dashboard/overview",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586"
+            "User-Agent": self._ua
         }
 
     def __repr__(self):
