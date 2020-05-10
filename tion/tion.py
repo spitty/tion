@@ -431,7 +431,7 @@ class TionApi:
             "Host": "api2.magicair.tion.ru",
             "Origin": "https://magicair.tion.ru",
             "Referer": "https://magicair.tion.ru/dashboard/overview",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586"
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
         }
 
     def __repr__(self):
