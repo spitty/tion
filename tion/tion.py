@@ -594,6 +594,17 @@ class Zone:
             self.target_co2 = zone_data.mode.auto_set.co2
         return self.valid
 
+    def data_12hours(self):
+        if not self.valid:
+            return None
+        url = f"https://api2.magicair.tion.ru/zone/{self.guid}/data/12hours"
+        try:
+            js = requests.get(url, headers=self._api.headers, timeout=10)
+        except requests.exceptions.RequestException as e:  # pragma: no cover
+            _LOGGER.error(f"Exception while getting data!:\n{e}")  # pragma: no cover
+            return None  # pragma: no cover
+        return js.json()
+
     def send(self) -> bool:
         if not self.valid:
             return False
